@@ -1,6 +1,6 @@
 {
-  "name": "gulp-webmake",
-  "version": "0.0.41",
+  "name": "@belym.a.2105/gulp-webmake",
+  "version": "0.0.42",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,20 +10,28 @@
     "type": "git",
     "url": "git://github.com/cmtt/gulp-webmake.git"
   },
-  "keywords" : "webmake bundle commonjs modules gulpplugin",
+  "keywords": [
+    "webmake",
+    "bundle",
+    "commonjs",
+    "modules",
+    "gulp",
+    "plugin"
+  ],
   "author": "Matthias Thoemmes <git@gmx.org>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cmtt/gulp-webmake/issues"
   },
   "dependencies": {
-    "through2": "~2.0.1",
-    "gulp-util": "~3.0.7",
-    "webmake": "~0.3.40"
+    "through2": "^3.0.1",
+    "plugin-error": "^1.0.1",
+    "webmake": "^1.1.1"
   },
-  "devDependencies" : {
-    "gulp-mocha": "~3.0.1",
-    "gulp": "~3.9.1",
-    "gulp-jshint": "~2.0.1"
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-jshint": "^2.1.0",
+    "gulp-mocha": "^7.0.2",
+    "jshint": "^2.11.0"
   }
 }

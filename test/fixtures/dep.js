@@ -23,13 +23,13 @@
 	};
 	resolve = function (scope, tree, path, fullPath, state, id) {
 		var name, dir, exports, module, fn, found, ext;
-		path = path.split('/');
+		path = path.split(/[\\/]/);
 		name = path.pop();
 		if ((name === '.') || (name === '..')) {
 			path.push(name);
 			name = '';
 		}
-		while ((dir = path.shift()) != null) {
+		while ((dir = path.shift()) != null)  {
 			if (!dir || (dir === '.')) continue;
 			if (dir === '..') {
 				scope = tree.pop();
@@ -81,7 +81,7 @@
 			id = '/';
 			tree = [];
 		} else if (t !== '.') {
-			name = path.split('/', 1)[0];
+			name = path.indexOf('@') === 0 ? path.split('/', 2).join("/") : path.split('/', 1)[0];
 			scope = modules[name];
 			if (!scope) {
 				if (envRequire) return envRequire(fullPath);
@@ -103,12 +103,15 @@
 		return resolve(scope, tree, path, fullPath, state, id);
 	};
 	getRequire = function (scope, tree, id) {
-		return function (path) {
+		var localRequire = function (path) {
 			return wmRequire(scope, [].concat(tree), path, id);
 		};
+		if (envRequire) localRequire.fromParentEnvironment = envRequire;
+		return localRequire
 	};
 	return getRequire(modules, [], '');
-})({
+})
+({
 	"gulp-webmake": {
 		"test": {
 			"hello": {

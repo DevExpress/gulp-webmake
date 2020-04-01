@@ -1,9 +1,8 @@
 var through2 = require('through2');
-var gutil = require('gulp-util');
 var webmake = require('webmake');
 var util = require('util');
-var path = require('path');
-var PluginError = gutil.PluginError;
+var PluginError = require('plugin-error');
+
 
 module.exports = function(options) {
   var defaultOptions = {};
@@ -27,7 +26,7 @@ module.exports = function(options) {
         self.emit('error', new PluginError('gulp-webmake', err, { showStack : true }));
       } else {
         file.contents = new Buffer(content);
-        file.path = gutil.replaceExtension(file.path, '.js');
+        file.extname = '.js';
         self.push(file);
       }
       next();

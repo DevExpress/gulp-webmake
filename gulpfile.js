@@ -1,10 +1,9 @@
-var gulp = require('gulp');
-var mocha = require('gulp-mocha');
+var gulp   = require('gulp');
+var mocha  = require('gulp-mocha');
 var jshint = require('gulp-jshint');
 
-gulp.task('default', ['jshint','mocha']);
 
-gulp.task('jshint', function () {
+function runJshint () {
   return gulp
     .src([
       './gulpfile.js',
@@ -13,10 +12,14 @@ gulp.task('jshint', function () {
     ])
     .pipe(jshint())
     .pipe(jshint.reporter());
-});
+}
 
-gulp.task('mocha', function () {
+function runMocha () {
   return gulp
     .src('test/*.js')
     .pipe(mocha());
-});
+}
+
+exports.jshint  = runJshint;
+exports.mocha   = runMocha;
+exports.default = gulp.series(exports.jshint, exports.mocha);

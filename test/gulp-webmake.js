@@ -1,7 +1,7 @@
 var assert = require('assert');
 var fs = require('fs');
 var path = require('path');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 var webmake = require('../');
 var basePath = path.join.bind(path, __dirname);
 
@@ -9,7 +9,7 @@ describe ('gulp-webmake', function () {
 
   it ('does not process empty files', function (done) {
     var ws = webmake();
-    var file = new gutil.File({ contents: null });
+    var file = new Vinyl({ contents: null });
     ws.on('data', function (content) {
       if (!content.isNull()) {
         throw new Error('Unexpectedly received data');
@@ -23,7 +23,7 @@ describe ('gulp-webmake', function () {
 
   it ('emits errors', function (done) {
     var ws = webmake();
-    var file = new gutil.File({
+    var file = new Vinyl({
       base: basePath('./hello/'),
       path: basePath('./hello/invalid-dep.js'),
       contents: new Buffer('var is = require("unknown");', 'utf8')
@@ -39,7 +39,7 @@ describe ('gulp-webmake', function () {
   it ('bundles according to fixture', function (done) {
     var ws = webmake();
     var fixture = fs.readFileSync(basePath('fixtures', 'dep.js'), 'utf8');
-    var file = new gutil.File({
+    var file = new Vinyl({
       base: basePath('./hello/'),
       path: basePath('./hello/index.js'),
       contents: fs.readFileSync(basePath('./hello/index.js'))
@@ -55,7 +55,7 @@ describe ('gulp-webmake', function () {
   it ('bundles with a custom name according to fixture', function (done) {
     var ws = webmake({ name : 'customHello' });
     var fixture = fs.readFileSync(basePath('fixtures', 'dep-with-custom-name.js'), 'utf8');
-    var file = new gutil.File({
+    var file = new Vinyl({
       base: basePath('./hello/'),
       path: basePath('./hello/index.js'),
       contents: fs.readFileSync(basePath('./hello/index.js'))

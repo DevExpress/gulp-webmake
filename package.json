@@ -1,6 +1,6 @@
 {
   "name": "@belym.a.2105/gulp-webmake",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -24,9 +24,9 @@
     "url": "https://github.com/cmtt/gulp-webmake/issues"
   },
   "dependencies": {
+    "@belym.a.2105/webmake": "^1.1.2",
     "through2": "^3.0.1",
-    "plugin-error": "^1.0.1",
-    "webmake": "^1.1.1"
+    "plugin-error": "^1.0.1"
   },
   "devDependencies": {
     "gulp": "^4.0.2",

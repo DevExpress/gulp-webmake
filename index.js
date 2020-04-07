@@ -1,5 +1,5 @@
 var through2 = require('through2');
-var webmake = require('webmake');
+var webmake = require('@belym.a.2105/webmake');
 var util = require('util');
 var PluginError = require('plugin-error');
 

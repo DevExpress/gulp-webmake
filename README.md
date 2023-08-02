@@ -1,3 +1,6 @@
+# DEPREDCATED
+The TestCafe team no longer maintains the `gulp-webmake` repository.
+
 # gulp-webmake
 > Bundles CommonJS and Node.JS modules for web browsers using Gulp.
 
